@@ -1,0 +1,8 @@
+
+
+CREATE COMPUTE MODULE ACE_BACKEND_DIFF_OPERATIONS_MF_Compute4
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.JSON.Data.Result = 'Data has been deleted..!!';
+	END;
+END MODULE;

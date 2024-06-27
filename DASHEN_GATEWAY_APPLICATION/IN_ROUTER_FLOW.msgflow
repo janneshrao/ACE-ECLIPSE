@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCallableFlowAsyncInvoke.msgnode="ComIbmCallableFlowAsyncInvoke.msgnode" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmWSInput.msgnode="ComIbmWSInput.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="IN_ROUTER_FLOW.msgflow" nsPrefix="IN_ROUTER_FLOW.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" nodeLayoutStyle="SQUARE">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="IN_ROUTER_FLOW" bundleName="IN_ROUTER_FLOW" pluginId="DASHEN_GATEWAY_APPLICATION"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/DASHEN_GATEWAY_APPLICATION/icons/full/obj16/IN_ROUTER_FLOW.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/DASHEN_GATEWAY_APPLICATION/icons/full/obj30/IN_ROUTER_FLOW.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmWSInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="78,92" URLSpecifier="/Andutha" messageDomainProperty="DFDL" messageTypeProperty="{}:testSchema">
+        <translation xmi:type="utility:ConstantString" string="HTTP Input"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="236,76" computeExpression="esql://routine/#IN_ROUTER_FLOW_Compute.Main">
+        <translation xmi:type="utility:ConstantString" string="Compute"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCallableFlowAsyncInvoke.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="394,85" asyncResponseCorrelator="KurraGunta" targetApplication="DASHEN_BUSINESS_APPLICATION" targetEndpointName="Yamagrani" requestTimeout="60">
+        <translation xmi:type="utility:ConstantString" string="Callable Flow Async Invoke"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

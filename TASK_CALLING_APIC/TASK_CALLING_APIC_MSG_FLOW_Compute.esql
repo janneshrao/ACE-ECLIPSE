@@ -1,0 +1,9 @@
+
+
+CREATE COMPUTE MODULE TASK_CALLING_APIC_MSG_FLOW_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot = InputRoot;
+		SET OutputRoot.HTTPInputHeader.client_id = 'ebd4562ae04e423c95fc675d42eb4247';
+	END;
+END MODULE;

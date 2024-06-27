@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmRESTRequest.msgnode="ComIbmRESTRequest.msgnode" xmlns:ComIbmWSInput.msgnode="ComIbmWSInput.msgnode" xmlns:ComIbmWSReply.msgnode="ComIbmWSReply.msgnode" xmlns:ComIbmWSRequest.msgnode="ComIbmWSRequest.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="TASK_CALLING_APIC_MSG_FLOW.msgflow" nsPrefix="TASK_CALLING_APIC_MSG_FLOW.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" nodeLayoutStyle="RECTANGLE">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="TASK_CALLING_APIC_MSG_FLOW" bundleName="TASK_CALLING_APIC_MSG_FLOW" pluginId="TASK_CALLING_APIC"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/TASK_CALLING_APIC/icons/full/obj16/TASK_CALLING_APIC_MSG_FLOW.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/TASK_CALLING_APIC/icons/full/obj30/TASK_CALLING_APIC_MSG_FLOW.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmWSInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="7,74" URLSpecifier="/googleAPI" parseQueryString="true" messageDomainProperty="JSON">
+        <translation xmi:type="utility:ConstantString" string="HTTP Input"/>
+      </nodes>
+      <nodes xmi:type="ComIbmWSReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="718,71">
+        <translation xmi:type="utility:ConstantString" string="HTTP Reply"/>
+      </nodes>
+      <nodes xmi:type="ComIbmRESTRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="343,-1" definitionFile="1055_Google_API-1.0.0.yaml" definitionType="swagger_20" operationName="getGetGoogle" baseURL="https://192.168.3.183:9443/apicbatch3/1055-jannesh/google_api" protocol="TLSv1.2" hostnameChecking="false" acceptCompressedResponses="true">
+        <translation xmi:type="utility:ConstantString" string="Google API"/>
+      </nodes>
+      <nodes xmi:type="ComIbmRESTRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="342,46" definitionFile="1055_HTTPBIN-1.0.0.yaml" definitionType="swagger_20" operationName="getHttpBin" baseURL="https://192.168.3.183:9443/apicbatch3/sandbox/1055_httpbin" hostnameChecking="false" acceptCompressedResponses="true">
+        <translation xmi:type="utility:ConstantString" string="HttpBin API"/>
+      </nodes>
+      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="342,95" URLSpecifier="https://192.168.3.183:9443/apicbatch3/1055-jannesh/1055_httpbin/httpBin" httpMethod="GET" httpVersion="1.1" protocol="TLS" messageDomainProperty="BLOB">
+        <translation xmi:type="utility:ConstantString" string="WithoutClientID"/>
+      </nodes>
+      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="489,159" URLSpecifier="https://192.168.3.183:9443/apicbatch3/1055-jannesh/1055_secured_google_api/securedGoogleAPI" timeoutForServer="30" httpMethod="GET" httpVersion="1.1" protocol="TLS">
+        <translation xmi:type="utility:ConstantString" string="ClientID"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="195,157" computeExpression="esql://routine/#TASK_CALLING_APIC_MSG_FLOW_Compute.Main">
+        <translation xmi:type="utility:ConstantString" string="AddClientID"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

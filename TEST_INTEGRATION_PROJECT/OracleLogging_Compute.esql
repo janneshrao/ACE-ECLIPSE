@@ -1,0 +1,12 @@
+
+
+CREATE COMPUTE MODULE OracleLogging_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		DECLARE REQUEST CHARACTER;
+		SET REQUEST = CAST(ASBITSTREAM(InputRoot.SOAP CCSID InputRoot.Properties.CodedCharSetId 
+		ENCODING InputRoot.Properties.Encoding) AS CHARACTER CCSID InputRoot.Properties.CodedCharSetId);
+		
+	END;
+END MODULE;

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCallableFlowInput.msgnode="ComIbmCallableFlowInput.msgnode" xmlns:ComIbmCallableFlowReply.msgnode="ComIbmCallableFlowReply.msgnode" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="DASHEN_CALLABLE_FLOW_PRACTICE_MSG_FLOW.msgflow" nsPrefix="DASHEN_CALLABLE_FLOW_PRACTICE_MSG_FLOW.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" nodeLayoutStyle="SQUARE">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="DASHEN_CALLABLE_FLOW_PRACTICE_MSG_FLOW" bundleName="DASHEN_CALLABLE_FLOW_PRACTICE_MSG_FLOW" pluginId="DASHEN_CALLABLE_FLOW_PRACTICE"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/DASHEN_CALLABLE_FLOW_PRACTICE/icons/full/obj16/DASHEN_CALLABLE_FLOW_PRACTICE_MSG_FLOW.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/DASHEN_CALLABLE_FLOW_PRACTICE/icons/full/obj30/DASHEN_CALLABLE_FLOW_PRACTICE_MSG_FLOW.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmCallableFlowInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="135,104" callableInputEndpoint="callableFlow">
+        <translation xmi:type="utility:ConstantString" string="Callable Input"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCallableFlowReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="529,103">
+        <translation xmi:type="utility:ConstantString" string="Callable Reply"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="311,78" computeExpression="esql://routine/#DASHEN_CALLABLE_FLOW_PRACTICE_MSG_FLOW_Compute.Main">
+        <translation xmi:type="utility:ConstantString" string="Compute"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

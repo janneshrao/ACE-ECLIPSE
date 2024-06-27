@@ -1,0 +1,15 @@
+
+
+CREATE COMPUTE MODULE TASK_OVERRIDE_WITHOUT_LOCALENVIRONMENT_MSG_FLOW_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot = InputRoot;
+		
+		DECLARE REF REFERENCE TO InputLocalEnvironment.TCPIP.Input.ConnectionDetails;
+		SET REF.Port = 4545;
+
+--		SET Environment.Port.Number = 4545;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

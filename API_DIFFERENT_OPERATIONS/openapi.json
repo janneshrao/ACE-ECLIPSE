@@ -1,0 +1,31 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API_DIFFERENT_OPERATIONS",
+    "version": "1.0.0",
+    "description": "API_DIFFERENT_OPERATIONS"
+  },
+  "servers": [
+    {
+      "url": "/api_different_operations/v1"
+    }
+  ],
+  "paths": {
+    "/operation": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {}
+          }
+        ]
+      }
+    }
+  }
+}

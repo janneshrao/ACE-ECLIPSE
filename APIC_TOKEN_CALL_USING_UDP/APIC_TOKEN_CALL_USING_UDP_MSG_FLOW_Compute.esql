@@ -1,0 +1,11 @@
+
+DECLARE OAUTH EXTERNAL CHARACTER;
+CREATE COMPUTE MODULE APIC_TOKEN_CALL_USING_UDP_MSG_FLOW_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties.ContentType = 'application/x-www-form-urlencoded';
+		SET OutputRoot.BLOB.BLOB = CAST(OAUTH AS BLOB CCSID InputRoot.Properties.CodedCharSetId);
+--		CREATE LASTCHILD OF OutputRoot PARSE(OAUTH); 
+		
+	END;
+END MODULE;

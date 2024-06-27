@@ -1,0 +1,21 @@
+DECLARE ns64 NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+
+
+CREATE COMPUTE MODULE ExceptionHandling
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		DECLARE error ROW;
+		DECLARE Excepref REFERENCE TO InputExceptionList.[1];--this will point to the 1st child of exeption ex:parserexeption ...Also the exeption tree has  more than one eception tree as we know so we are saing to point at the firt exception.
+		WHILE ENDSWITH(FIELDNAME(Excepref),'Exception') DO   --the fieldname will be taking the PARSERECEPTION 
+			SET error.Number=Excepref.Number;
+			SET error.Text=Excepref.Text;
+			SET error.Severity= Excepref.Severity;
+			MOVE Excepref LASTCHILD;
+		END WHILE;
+		SET OutputRoot.SOAP.Body.ns64:Fault.faultcode = error.Number;
+		SET OutputRoot.SOAP.Body.ns64:Fault.faultstring = error.Severity;
+		SET OutputRoot.SOAP.Body.ns64:Fault.detail =  (error.Text) || ' ' ||(Excepref.Text);
+			
+	END;
+END MODULE;

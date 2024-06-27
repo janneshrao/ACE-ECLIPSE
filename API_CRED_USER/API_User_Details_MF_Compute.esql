@@ -1,0 +1,9 @@
+
+
+CREATE COMPUTE MODULE API_User_Details_MF_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot = InputRoot;
+		SET OutputRoot.JSON.Data.User = 'User Not Found';
+	END;
+END MODULE;

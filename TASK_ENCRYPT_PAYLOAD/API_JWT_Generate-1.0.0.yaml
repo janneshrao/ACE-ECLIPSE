@@ -1,0 +1,82 @@
+swagger: '2.0'
+info:
+  title: API_JWT_Generate
+  x-ibm-name: api_jwt_generate
+  version: 1.0.0
+x-ibm-configuration:
+  cors:
+    enabled: true
+  gateway: datapower-api-gateway
+  type: rest
+  phase: realized
+  enforced: true
+  testable: true
+  assembly:
+    execute:
+      - set-variable:
+          version: 2.0.0
+          title: set-variable
+          actions:
+            - value: '{   "kty": "oct",   "use": "sig",   "alg": "HS256",   "kid": "46f2c3b6-0d17-4c95-89b3-4cb026f9ff43",   "k": "J8rw8fO2kNBU3nQGLeuF7CcuOuPc9-KNrDlXgP3hIjn-SB032mKL_Z3ZgzC9eXgsLSqjnFQmqWQzFVnnVNDHDA" }'
+              add: jwk
+              type: string
+      - jwt-generate:
+          version: 2.0.0
+          title: jwt-generate
+          jwt: message.body
+          iss-claim: request.headers.iss-claim
+          exp-claim: 3600
+          aud-claim: request.headers.aud-claim
+          sub-claim: request.body
+          jws-jwk: jwk
+          jws-alg: HS256
+    finally: []
+  properties:
+    target-url:
+      value: http://example.com/operation-name
+      description: The URL of the target service
+      encoded: false
+  activity-log:
+    enabled: true
+    success-content: activity
+    error-content: payload
+  servers:
+    - url: https://192.168.3.183:9443/apicbatch3/sandbox/api_jwt_generate
+      description: ''
+      type:
+        - production
+        - development
+  oauth-servers: []
+basePath: /api_jwt_generate
+paths:
+  /token:
+    post:
+      responses:
+        '200':
+          description: success
+          schema:
+            type: string
+        '500':
+          description: JWT Failed by Jannesh
+      consumes: []
+      produces: []
+    parameters:
+      - name: iss-claim
+        required: true
+        in: header
+        type: string
+      - name: aud-claim
+        required: true
+        in: header
+        type: string
+      - name: token
+        required: true
+        in: body
+        schema:
+          title: schema
+          type: object
+          properties:
+            tokenValue:
+              type: string
+schemes:
+  - https

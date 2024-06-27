@@ -1,0 +1,9 @@
+BROKER SCHEMA Common_Resources
+
+
+CREATE COMPUTE MODULE Exception_Handling_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

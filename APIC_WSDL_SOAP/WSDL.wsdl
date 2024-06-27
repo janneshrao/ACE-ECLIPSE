@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="WSDL" targetNamespace="http://www.example.org/WSDL/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/WSDL/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <generatedXSD location="WSDL_InlineSchema1.xsd"/>
+        <binding hasEncoding="false" imported="true" name="WSDLSOAP" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  <wsdl:types>
+    
+          <xsd:schema targetNamespace="http://www.example.org/WSDL/" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+<xsd:include schemaLocation="WSDL_InlineSchema1.xsd"/>
+    </xsd:schema>
+    </wsdl:types>
+  <wsdl:message name="AddRequest">
+    <wsdl:part element="tns:Add" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="AddResponse">
+    <wsdl:part element="tns:AddResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="WSDL">
+    <wsdl:operation name="Add">
+      <wsdl:input message="tns:AddRequest"/>
+      <wsdl:output message="tns:AddResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSDLSOAP" type="tns:WSDL">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Add">
+      <soap:operation soapAction="http://www.example.org/WSDL/Add"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSDL">
+    <wsdl:port binding="tns:WSDLSOAP" name="WSDLSOAP">
+      <soap:address location="http://localhost:7800/Add"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

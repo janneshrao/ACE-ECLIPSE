@@ -1,0 +1,13 @@
+
+
+CREATE COMPUTE MODULE TASK_FILENODES_MSG_FLOW_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties = InputRoot.Properties;
+		SET OutputRoot.XMLNSC.Employee.EmpId = InputRoot.DFDL.EMPLOYEE_DATA.record.EmpID;
+		SET OutputRoot.XMLNSC.Employee.Name = InputRoot.DFDL.EMPLOYEE_DATA.record.Name;
+		SET OutputRoot.XMLNSC.Employee.Desgn = InputRoot.DFDL.EMPLOYEE_DATA.record.Desgn;
+		SET OutputRoot.XMLNSC.Employee.BSal = InputRoot.DFDL.EMPLOYEE_DATA.record.BSal;
+		SET OutputRoot.XMLNSC.Employee.Contact = InputRoot.DFDL.EMPLOYEE_DATA.record.Contact;
+	END;
+END MODULE;

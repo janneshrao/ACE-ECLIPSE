@@ -1,0 +1,10 @@
+
+
+CREATE COMPUTE MODULE OUTWARD_COMPUTE
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.JSON.Data = InputRoot.JSON.Data;
+		
+		SET OutputLocalEnvironment.Destination.HTTP.RequestIdentifier = CAST(InputRoot.MQRFH2.usr AS BLOB);
+	END;
+END MODULE;

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="MULTIPLESERVICES" targetNamespace="http://www.example.org/MULTIPLESERVICES/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/MULTIPLESERVICES/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="MULTIPLESERVICESSOAP" originalBindingStyle="document"/>
+        <generatedXSD location="MULTIPLESERVICES_InlineSchema1.xsd"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  
+  <wsdl:types>
+    
+          <xsd:schema targetNamespace="http://www.example.org/MULTIPLESERVICES/" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+<xsd:include schemaLocation="MULTIPLESERVICES_InlineSchema1.xsd"/>
+            <xsd:element name="updateEmployee">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="in" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+            <xsd:element name="updateEmployeeResponse">
+            	<xsd:complexType>
+            		<xsd:sequence>
+
+            			<xsd:element name="out" type="xsd:string"></xsd:element>
+            		</xsd:sequence>
+            	</xsd:complexType>
+            </xsd:element>
+          </xsd:schema>
+    </wsdl:types>
+  <wsdl:message name="getEmployeeRequest">
+    <wsdl:part element="tns:getEmployee" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getEmployeeResponse">
+    <wsdl:part element="tns:getEmployeeResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="saveEmployeeRequest">
+  	<wsdl:part element="tns:saveEmployee" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="saveEmployeeResponse">
+  	<wsdl:part element="tns:saveEmployeeResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="getEmployeeFault">
+  	<wsdl:part element="tns:getEmployeeFault" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="saveEmployeeFault">
+  	<wsdl:part element="tns:saveEmployeeFault" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="updateEmployeeRequest">
+  	<wsdl:part name="parameters" element="tns:updateEmployee"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="updateEmployeeResponse">
+  	<wsdl:part name="parameters" element="tns:updateEmployeeResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="MULTIPLE_OPERATIONS">
+    <wsdl:operation name="getEmployee">
+      <wsdl:input message="tns:getEmployeeRequest"/>
+      <wsdl:output message="tns:getEmployeeResponse"/>
+        </wsdl:operation>
+    <wsdl:operation name="saveEmployee">
+    	<wsdl:input message="tns:saveEmployeeRequest"/>
+    	<wsdl:output message="tns:saveEmployeeResponse"/>
+        </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MULTIPLESERVICESSOAP" type="tns:MULTIPLE_OPERATIONS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getEmployee">
+      <soap:operation soapAction="http://www.example.org/MULTIPLESERVICES/getEmployee"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+                <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+        </wsdl:operation>
+    <wsdl:operation name="saveEmployee">
+      <soap:operation soapAction="http://www.example.org/MULTIPLESERVICES/getEmployee"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+                <wsdl:fault name="fault">
+        <soap:fault name="fault" use="literal"/>
+      </wsdl:fault>
+        </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MULTIPLESERVICES">
+    <wsdl:port binding="tns:MULTIPLESERVICESSOAP" name="MULTIPLESERVICESSOAP">
+      <soap:address location="http://localhost:7800/Employee"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

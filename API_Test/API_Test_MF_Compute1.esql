@@ -1,0 +1,21 @@
+
+
+CREATE COMPUTE MODULE API_Test_MF_Compute1
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		DECLARE USER_ID, MOBILE INTEGER;
+		DECLARE NAME, EMAIL CHARACTER;
+		
+		DECLARE REF REFERENCE TO InputRoot.JSON.Data;
+		
+		SET USER_ID = REF.user_id;
+		SET NAME = REF.name;
+		SET EMAIL = REF.email;
+		SET MOBILE = REF.mobile;
+		
+		PASSTHRU 'INSERT INTO USERDETAILS VALUES(?,?,?,?)' TO DataSource.dsn VALUES(USER_ID,NAME,EMAIL,MOBILE);
+		
+		SET OutputRoot.JSON.Data.Status = 'User has been added succesfully..!!';
+	END;
+END MODULE;

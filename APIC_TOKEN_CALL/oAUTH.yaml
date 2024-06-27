@@ -1,0 +1,201 @@
+info:
+  description: ''
+  x-ibm-name: 1055_oauth_provider3628b3b0-7503-4cb0-8ffc-738848692dbe
+  version: 1.0.0
+  title: 1055_oauth_provider
+x-ibm-configuration:
+  gateway: datapower-api-gateway
+  assembly:
+    execute:
+      - oauth:
+          title: oauth-auto-generated-1
+          version: 2.0.0
+          description: >-
+            This oauth policy performs all OAuth/OpenID Connect protocol steps
+            that are needed for OAuth Validation by default. The inputs and
+            outputs of each of the steps are driven by documented context
+            variables. Add or remove the Supported OAuth Components as required.
+          oauth-provider-settings-ref:
+            default: 1055_oauth_provider
+          supported-oauth-components:
+            - OAuthValidateRequest
+      - switch:
+          version: 2.0.0
+          title: oauth-auto-generated-switch
+          case:
+            - condition: ($operationPath() = '/oauth2/token')
+              execute:
+                - oauth:
+                    title: oauth-auto-generated-3
+                    version: 2.0.0
+                    description: >-
+                      This oauth policy performs all OAuth/OpenID Connect
+                      protocol steps that are needed for token path by default.
+                      The inputs and outputs of each of the steps are driven by
+                      documented context variables. Add or remove the Supported
+                      OAuth Components as required.
+                    oauth-provider-settings-ref:
+                      default: 1055_oauth_provider
+                    supported-oauth-components:
+                      - OAuthGenerateAccessToken
+                      - OAuthVerifyAZCode
+                      - OAuthVerifyRefreshToken
+                      - OAuthCollectMetadata
+            - otherwise:
+                - oauth:
+                    title: oauth-auto-generated-4
+                    version: 2.0.0
+                    description: >-
+                      This oauth policy performs all OAuth/OpenID Connect
+                      protocol steps that are needed for all other paths by
+                      default. The inputs and outputs of each of the steps are
+                      driven by documented context variables. Add or remove the
+                      Supported OAuth Components as required.
+                    oauth-provider-settings-ref:
+                      default: 1055_oauth_provider
+                    supported-oauth-components:
+                      - OAuthIntrospectToken
+                      - OAuthRevokeToken
+  type: oauth
+  testable: true
+  enforced: true
+  phase: realized
+  cors:
+    enabled: true
+  properties: {}
+swagger: '2.0'
+host: $(catalog.host)
+schemes:
+  - https
+basePath: /1055_oauth_provider
+paths:
+  /oauth2/authorize:
+    get:
+      produces:
+        - text/html
+      summary: Endpoint for Authorization Code and Implicit grants
+      description: >-
+        This endpoint allows an access token (Implicit) or access code
+        (Authorization Code) request with the following parameters:
+                      - Implicit (response_type = token, client_id, scope, redirect_uri(*), state(*))
+                      - Authorization Code (response_type = code, client_id, scope, redirect_uri(*), state(*))
+      parameters:
+        - name: response_type
+          in: query
+          description: request an authorization code or an access token (implicit)
+          required: true
+          type: string
+          enum:
+            - code
+            - token
+        - name: client_id
+          in: query
+          description: client_id of the application which product is subscribed to
+          required: true
+          type: string
+        - name: scope
+          in: query
+          description: Scope being requested
+          type: string
+          required: true
+        - name: redirect_uri
+          in: query
+          type: string
+          description: URI where user is redirected to after authorization
+          required: false
+        - name: state
+          in: query
+          type: string
+          description: >-
+            This string will be echoed back to application when user is
+            redirected
+          required: false
+      responses:
+        '200':
+          description: An HTML form for authentication or authorization of this request.
+        '302':
+          description: >
+            Redirect to the clients redirect_uri containing one of the following
+
+            - **authorization code** for Authorization code grant
+
+            - **access token** for Implicit grant
+
+            - **error** in case of errors, such as the user has denied the
+            request
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - text/html
+      summary: Endpoint for Authorization Code and Implicit grants
+      description: Submit approval to access token.
+      security: []
+      parameters:
+        - name: response_type
+          in: formData
+          description: request an authorization code or an access token (implicit)
+          required: true
+          type: string
+          enum:
+            - code
+            - token
+        - name: client_id
+          in: formData
+          description: application requesting the access code or token
+          required: true
+          type: string
+        - name: scope
+          in: formData
+          description: requested scope of this authorization
+          required: true
+          type: string
+        - name: redirect_uri
+          in: formData
+          description: >-
+            URI the application is requesting this code or token to be
+            redirected to
+          required: false
+          type: string
+      responses:
+        '200':
+          description: 200 OK
+  /oauth2/token:
+    post:
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      summary: >-
+        Endpoint for obtaining access token using Authorization code,
+        Application and Password grants
+      description: >-
+        This endpoint allows requesting an access token following one of the
+        flows below:
+                - Access Code (exchange access code for an access token)
+                - Client Credentials (2-legged, resource owner credentials are not obtained)
+                - Resource Owner Password Credentials (2-legged, client provides resource owner name and password)
+                - Refresh Token (exchange refresh token for a new access token)
+      parameters:
+        - name: grant_type
+          in: formData
+          required: true
+          type: string
+          enum:
+            - authorization_code
+            - password
+            - client_credentials
+            - refresh_token
+      responses:
+        '200':
+          description: 200 OK
+definitions:
+  access_token_response:
+    type: object
+    additionalProperties: false
+    required:
+      - access_token
+    properties:
+      access_token:
+        type: string
+securityDefinitions: {}

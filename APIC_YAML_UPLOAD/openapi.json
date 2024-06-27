@@ -1,0 +1,52 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "APIC_YAML_UPLOAD",
+    "version": "1.0.0",
+    "description": "APIC_YAML_UPLOAD"
+  },
+  "servers": [
+    {
+      "url": "/apic_yaml_upload/v1"
+    }
+  ],
+  "paths": {
+    "/Employee": {
+      "parameters": [],
+      "get": {
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "EmpID",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Get_Schema"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "examples": {}
+            }
+          },
+          "required": false
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Get_Schema": {
+        "type": "integer",
+        "maximum": 9999,
+        "minimum": 1000
+      }
+    }
+  }
+}

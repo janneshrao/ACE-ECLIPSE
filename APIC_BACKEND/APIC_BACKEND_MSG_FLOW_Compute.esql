@@ -1,0 +1,10 @@
+
+
+CREATE COMPUTE MODULE APIC_BACKEND_MSG_FLOW_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot = InputRoot;
+		SET OutputRoot.JSON.Data.Result = 'Success';
+	END;
+END MODULE;
+

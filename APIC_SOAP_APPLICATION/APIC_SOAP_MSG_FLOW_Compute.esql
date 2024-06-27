@@ -1,0 +1,9 @@
+DECLARE ns NAMESPACE 'http://www.example.org/WSDLFile/';
+
+
+CREATE COMPUTE MODULE APIC_SOAP_MSG_FLOW_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.SOAP.Body.ns:GetEmployeeResponse.EmpName = 'Jannesh';
+	END;
+END MODULE;

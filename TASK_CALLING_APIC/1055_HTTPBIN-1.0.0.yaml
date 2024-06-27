@@ -1,0 +1,59 @@
+swagger: '2.0'
+info:
+  title: 1055_HTTPBIN
+  x-ibm-name: 1055_httpbin
+  version: 1.0.0
+x-ibm-configuration:
+  cors:
+    enabled: true
+  gateway: datapower-api-gateway
+  type: rest
+  phase: realized
+  enforced: true
+  testable: true
+  assembly:
+    execute:
+      - invoke:
+          title: invoke
+          version: 2.0.0
+          verb: keep
+          target-url: $(target-url)
+          follow-redirects: false
+          timeout: 60
+          parameter-control:
+            type: allowlist
+            values: []
+          header-control:
+            type: blocklist
+            values: []
+          inject-proxy-headers: true
+    finally: []
+  properties:
+    target-url:
+      value: https://httpbin.org/
+      description: The URL of the target service
+      encoded: false
+  activity-log:
+    enabled: true
+    success-content: activity
+    error-content: payload
+  servers:
+    - url: https://192.168.3.183:9443/apicbatch3/sandbox/1055_httpbin
+      description: ''
+      type:
+        - production
+        - development
+  oauth-servers: []
+basePath: /1055_httpbin
+paths:
+  /httpBin:
+    get:
+      responses:
+        '200':
+          description: success
+          schema:
+            type: string
+      consumes: []
+      produces: []
+schemes:
+  - https

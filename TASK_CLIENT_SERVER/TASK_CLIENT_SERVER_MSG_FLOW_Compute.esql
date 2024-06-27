@@ -1,0 +1,10 @@
+CREATE COMPUTE MODULE TASK_CLIENT_SERVER_MSG_FLOW_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties = InputRoot.Properties;
+		SET OutputRoot.Properties.ReplyIdentifier = InputLocalEnvironment.Destination.HTTP.RequestIdentifier;
+		SET OutputRoot.HTTPInputHeader = InputRoot.HTTPInputHeader;
+		SET OutputRoot.BLOB.BLOB = InputRoot.BLOB.BLOB;
+		RETURN TRUE;
+	END;
+END MODULE;

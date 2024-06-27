@@ -1,0 +1,6 @@
+CREATE COMPUTE MODULE TEST_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.XMLNSC.Status.Message = 'Connection Establiesh..!!';
+	END;
+END MODULE;

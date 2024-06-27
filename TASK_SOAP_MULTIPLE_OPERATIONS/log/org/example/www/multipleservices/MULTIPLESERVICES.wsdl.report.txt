@@ -1,0 +1,27 @@
+
+
+Importing file: C:\Users\Sreenivas Bandaru\IBM\ACET12\workspace\TASK_SOAP_MULTIPLE_OPERATIONS\MULTIPLESERVICES.wsdl
+
+The WSDL import will proceed with bindings MULTIPLESERVICESSOAP.
+Creating wsdl schema document for file:///C:/Users/Sreenivas Bandaru/IBM/ACET12/workspace/TASK_SOAP_MULTIPLE_OPERATIONS/MULTIPLESERVICES.wsdl.
+Parsing wsdl binding {http://www.example.org/MULTIPLESERVICES/}MULTIPLESERVICESSOAP.
+Parsing wsdl binding input getEmployee.
+Parsing wsdl binding output getEmployee.
+Parsing wsdl binding fault fault.
+Parsing wsdl binding input saveEmployee.
+Parsing wsdl binding output saveEmployee.
+Parsing wsdl binding fault fault.
+Processing doc style for operation getEmployee.
+Processing doc style for operation saveEmployee.
+Populating WSDL schema MULTIPLESERVICES.xsd.
+Creating file MULTIPLESERVICES.xsd in the workspace.
+Creating file MULTIPLESERVICES_InlineSchema1.xsd in the workspace.
+Copying source WSDL MULTIPLESERVICES.wsdl to MULTIPLESERVICES.wsdl.
+
+Elapsed time processing this message definition file: 0.595 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

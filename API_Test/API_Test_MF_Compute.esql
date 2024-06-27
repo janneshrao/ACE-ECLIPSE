@@ -1,0 +1,16 @@
+
+
+CREATE COMPUTE MODULE API_Test_MF_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE USER_ID INTEGER;
+		SET USER_ID = InputLocalEnvironment.HTTP.Input.QueryString.userId;
+		DECLARE USER ROW;
+		SET USER = PASSTHRU('SELECT * FROM USERDETAILS WHERE USER_ID=?' TO DataSource.dsn VALUES(USER_ID));
+		IF USER.[>] IS NOT NULL THEN
+			SET OutputRoot.JSON.Data.UserDetails = USER;
+		ELSE
+			SET OutputRoot.JSON.Data.UserDetails = 'User Does Not Exists';
+		END IF;
+	END;
+END MODULE;

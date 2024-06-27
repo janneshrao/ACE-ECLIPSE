@@ -1,0 +1,8 @@
+
+
+CREATE COMPUTE MODULE APIC_Calculator_MF_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.JSON.Data.Result = InputRoot.JSON.Data.intA + InputRoot.JSON.Data.intB;
+	END;
+END MODULE;

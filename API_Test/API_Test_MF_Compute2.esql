@@ -1,0 +1,8 @@
+
+
+CREATE COMPUTE MODULE API_Test_MF_Compute2
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.JSON.Data.Error = 'User ID already exists. Please try with another User ID';
+	END;
+END MODULE;

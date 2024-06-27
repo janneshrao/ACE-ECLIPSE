@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmDatabaseRetrieve.msgnode="ComIbmDatabaseRetrieve.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="getUserDetails.subflow" nsPrefix="getUserDetails.subflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" nodeLayoutStyle="SQUARE">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="getUserDetails" bundleName="getUserDetails" pluginId="API_CRED_USER"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/API_CRED_USER/icons/full/obj16/getUserDetails.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/API_CRED_USER/icons/full/obj30/getUserDetails.gif"/>
+    <composition>
+      <nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.Input_1" location="66,13">
+        <translation xmi:type="utility:TranslatableString" key="Input" bundleName="getUserDetails" pluginId="API_CRED_USER"/>
+      </nodes>
+      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output_1" location="550,25">
+        <translation xmi:type="utility:TranslatableString" key="Output" bundleName="getUserDetails" pluginId="API_CRED_USER"/>
+      </nodes>
+      <nodes xmi:type="ComIbmDatabaseRetrieve.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="198,21" dataSourceName="JDBC_Policy" copyMessage="true" sqlQuery="SELECT userDetails.name, userDetails.email, userDetails.mobile&#xA;FROM userDetails&#xA;WHERE userDetails.user_id = ?&#xA;ORDER BY userDetails.name ASC, userDetails.email ASC, userDetails.mobile ASC" tableNameComboValues="0,0,0,0~userDetails" columnNameComboValues="3,2,0,1~email,mobile,name,user_id" operatorComboValues="2,0,0,0~ASC"
+          valueTypeComboValues="2,0,0,0~None" columnValueComboValues="2,0,1,0~userDetails.name">
+        <translation xmi:type="utility:ConstantString" string="Database Retrieve"/>
+        <queryElements tableName="userDetails" columnName="user_id" operator="=" valueType="Element" value="$InputLocalEnvironment/HTTP/Input/QueryString/userId"/>
+        <queryElements tableName="userDetails" columnName="name" operator="ASC" valueType="None" value="None"/>
+        <queryElements tableName="userDetails" columnName="email" operator="ASC" valueType="None" value="None"/>
+        <queryElements tableName="userDetails" columnName="mobile" operator="ASC" valueType="None" value="None"/>
+        <dataElements columnName="userDetails.name" messageElement="$OutputRoot/JSON/Data/User/UserName"/>
+        <dataElements columnName="userDetails.email" messageElement="$OutputRoot/JSON/Data/User/UserEmail"/>
+        <dataElements columnName="userDetails.mobile" messageElement="$OutputRoot/JSON/Data/User/UserMobile"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="380,98" computeExpression="esql://routine/#API_User_Details_MF_Compute.Main">
+        <translation xmi:type="utility:ConstantString" string="Compute"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_1" sourceNode="InTerminal.Input_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="OutTerminal.Output_1" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.keyNotFound" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="OutTerminal.Output_1" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

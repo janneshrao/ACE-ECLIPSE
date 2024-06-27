@@ -1,0 +1,97 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API_CRED_USER",
+    "version": "1.0.0",
+    "description": "API_CRED_USER"
+  },
+  "servers": [
+    {
+      "url": "/api_cred_user/v1"
+    }
+  ],
+  "paths": {
+    "/UserDetails": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "title": "getSchema",
+              "type": "integer"
+            }
+          }
+        ]
+      },
+      "post": {
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "userDetails",
+            "in": "cookie",
+            "required": true,
+            "schema": {
+              "title": "postSchema",
+              "type": "object",
+              "properties": {
+                "user_id": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "mobile": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "delete": {
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        },
+        "parameters": [
+          {
+            "name": "param",
+            "in": "cookie",
+            "schema": {
+              "title": "Schema",
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "put": {
+        "responses": {
+          "200": {
+            "description": "success"
+          }
+        },
+        "parameters": []
+      }
+    }
+  }
+}

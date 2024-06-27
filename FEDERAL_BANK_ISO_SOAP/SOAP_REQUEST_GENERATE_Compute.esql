@@ -1,0 +1,9 @@
+DECLARE ns NAMESPACE 'http://www.example.org/NewWSDLFile/';
+
+
+CREATE COMPUTE MODULE SOAP_REQUEST_GENERATE_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.SOAP.Body.ns:NewOperationResponse.out = InputRoot.DFDL.ISO8583_1987.AccountIdentification1_102;
+	END;
+END MODULE;

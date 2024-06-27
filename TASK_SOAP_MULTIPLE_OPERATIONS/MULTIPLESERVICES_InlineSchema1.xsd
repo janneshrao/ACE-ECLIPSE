@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/MULTIPLESERVICES/" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/MULTIPLESERVICES/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+      <xsd:element ibmSchExtn:docRoot="true" name="getEmployee">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="EmpID" type="xsd:int"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element ibmSchExtn:docRoot="true" name="getEmployeeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+          	<xsd:element name="Name" type="xsd:string"/>
+          	<xsd:element name="Desgn" type="xsd:string"/>
+          	<xsd:element name="BSal" type="xsd:float"/>
+          	<xsd:element name="Contact" type="xsd:long"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element ibmSchExtn:docRoot="true" name="saveEmployee">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="EmpID" type="xsd:int"/>
+      			<xsd:element name="Name" type="xsd:string"/>
+      			<xsd:element name="Desgn" type="xsd:string"/>
+      			<xsd:element name="BSal" type="xsd:float"/>
+      			<xsd:element name="Contact" type="xsd:long"/>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+      <xsd:element ibmSchExtn:docRoot="true" name="saveEmployeeResponse">
+      	<xsd:complexType>
+      		<xsd:sequence>
+
+      			<xsd:element name="Status" type="xsd:string"/>
+      		</xsd:sequence>
+      	</xsd:complexType>
+      </xsd:element>
+        <xsd:element ibmSchExtn:docRoot="true" name="getEmployeeFault">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="getEmployeeFault" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:element ibmSchExtn:docRoot="true" name="saveEmployeeFault">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="saveEmployeeFault" type="xsd:string"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

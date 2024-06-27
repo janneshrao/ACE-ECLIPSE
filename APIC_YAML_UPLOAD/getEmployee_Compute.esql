@@ -1,0 +1,10 @@
+
+
+CREATE COMPUTE MODULE getEmployee_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE name BLOB InputRoot.BLOB.BLOB;
+		DECLARE encode_name CHARACTER BASE64ENCODE(name);
+		SET OutputRoot.JSON.Data.Employee.Name = encode_name ;
+	END;
+END MODULE;

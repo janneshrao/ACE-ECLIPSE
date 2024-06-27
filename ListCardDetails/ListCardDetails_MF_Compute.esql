@@ -1,0 +1,11 @@
+
+
+CREATE COMPUTE MODULE ListCardDetails_MF_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		SET OutputRoot.JSON.Data.ListCardDetails.ESBHeader = InputRoot.JSON.Data.ListCardDetails.ESBHeader;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

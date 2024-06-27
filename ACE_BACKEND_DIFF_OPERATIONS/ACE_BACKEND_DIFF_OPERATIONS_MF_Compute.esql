@@ -1,0 +1,25 @@
+
+
+CREATE COMPUTE MODULE ACE_BACKEND_DIFF_OPERATIONS_MF_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		SET OutputRoot = InputRoot;
+		
+		IF STARTSWITH(InputRoot.HTTPInputHeader."X-Original-HTTP-Command",'POST') THEN
+			SET OutputLocalEnvironment.Destination.RouterList.DestinationData[1].labelName = 'POST';
+		END IF;
+		
+		IF STARTSWITH(InputRoot.HTTPInputHeader."X-Original-HTTP-Command",'PUT') THEN
+			SET OutputLocalEnvironment.Destination.RouterList.DestinationData[1].labelName = 'PUT';
+		END IF;
+		
+		IF STARTSWITH(InputRoot.HTTPInputHeader."X-Original-HTTP-Command",'DELETE') THEN
+			SET OutputLocalEnvironment.Destination.RouterList.DestinationData[1].labelName = 'DELETE';
+		END IF;
+		
+		IF STARTSWITH(InputRoot.HTTPInputHeader."X-Original-HTTP-Command",'GET') THEN
+			SET OutputLocalEnvironment.Destination.RouterList.DestinationData[1].labelName = 'GET';
+		END IF;
+	END;
+END MODULE;

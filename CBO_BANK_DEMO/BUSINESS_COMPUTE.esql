@@ -1,0 +1,23 @@
+DECLARE ns NAMESPACE 'http://www.example.org/WSDLFile/TEST';
+
+
+CREATE COMPUTE MODULE GENERATE_REQ_TO_T24
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties = InputRoot.Properties;
+		SET OutputRoot.MQMD = InputRoot.MQMD;
+		SET Environment.RequestIdentifier = InputRoot.MQRFH2;
+		SET OutputRoot.SOAP.Body.ns:BalanceEnquiry.AccNumber = InputRoot.JSON.Data.Process.AccNumber;
+		RETURN TRUE;
+	END;
+END MODULE;
+
+CREATE COMPUTE MODULE GENERATE_RES_TO_OUTWARD
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties = InputRoot.Properties;
+		SET OutputRoot.MQMD = InputRoot.MQMD;
+		SET OutputRoot.MQRFH2 = Environment.RequestIdentifier;
+		SET OutputRoot.JSON.Data.Balance = InputRoot.SOAP.Body.ns:BalanceEnquiryResponse.Balance;
+	END;
+END MODULE;

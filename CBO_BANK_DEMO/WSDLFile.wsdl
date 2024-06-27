@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="WSDLFile" targetNamespace="http://www.example.org/WSDLFile/TEST" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/WSDLFile/TEST" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <generatedXSD location="WSDLFile_InlineSchema1.xsd"/>
+        <binding hasEncoding="false" imported="true" name="WSDLFileSOAP" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  <wsdl:types>
+    
+          <xsd:schema targetNamespace="http://www.example.org/WSDLFile/TEST" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+<xsd:include schemaLocation="WSDLFile_InlineSchema1.xsd"/>
+    </xsd:schema>
+    </wsdl:types>
+  <wsdl:message name="BalanceEnquiryRequest">
+    <wsdl:part element="tns:BalanceEnquiry" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="BalanceEnquiryResponse">
+    <wsdl:part element="tns:BalanceEnquiryResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="WSDLFile">
+    <wsdl:operation name="BalanceEnquiry">
+      <wsdl:input message="tns:BalanceEnquiryRequest"/>
+      <wsdl:output message="tns:BalanceEnquiryResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSDLFileSOAP" type="tns:WSDLFile">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="BalanceEnquiry">
+      <soap:operation soapAction="http://www.example.org/WSDLFile/TEST/NewOperation"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSDLFile">
+    <wsdl:port binding="tns:WSDLFileSOAP" name="WSDLFileSOAP">
+      <soap:address location="http://localhost:7800/t24"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

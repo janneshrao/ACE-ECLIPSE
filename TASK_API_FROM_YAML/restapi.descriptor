@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:restapiDescriptor xmlns="http://com.ibm.etools.mft.descriptor.base" xmlns:ns2="http://com.ibm.etools.mft.descriptor.restapi" definitionType="swagger_20" definitionFile="1055_HTTPBIN-1.0.0.yaml" implementation="gen/TASK_API_FROM_YAML.msgflow" https="false" definitionWithExtRef="false" faultFormat="JSON">
+    <ns2:operations>
+        <ns2:operation name="getHttpBin" implementation="getHttpBin.subflow"/>
+    </ns2:operations>
+    <ns2:errorHandlers/>
+</ns2:restapiDescriptor>

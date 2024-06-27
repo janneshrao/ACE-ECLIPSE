@@ -1,0 +1,18 @@
+
+
+CREATE COMPUTE MODULE FETCH_Q
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		DECLARE INREF REFERENCE TO InputRoot.JSON.Data.Process;
+		
+		DECLARE RESULT ROW;
+		SET RESULT = PASSTHRU('SELECT QUEUENAME FROM QUEUENAMES WHERE PROCESSING_CODE=?' TO DataSource.dsn VALUES(INREF.ProcessingCode));
+		
+		SET OutputRoot.MQRFH2.usr = InputLocalEnvironment.Destination.HTTP.RequestIdentifier;
+		SET OutputRoot.JSON.Data = InputRoot.JSON.Data;
+		
+		SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = RESULT.QUEUENAME;
+		RETURN TRUE;
+	END;
+END MODULE;

@@ -1,0 +1,11 @@
+DECLARE ns1 NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+DECLARE ns2 NAMESPACE 'http://www.example.org/WSDL/';
+DECLARE ns NAMESPACE 'http://www.example.org/Calculator/';
+
+
+CREATE COMPUTE MODULE APIC_WSDL_SOAP_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.SOAP.Body.ns2:AddResponse.Result = InputRoot.SOAP.Body.ns2:Add.intA + InputRoot.SOAP.Body.ns2:Add.intB;
+	END;
+END MODULE;

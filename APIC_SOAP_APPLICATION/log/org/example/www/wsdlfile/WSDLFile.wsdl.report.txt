@@ -1,0 +1,19 @@
+
+
+Importing file: C:\Users\Sreenivas Bandaru\IBM\ACET12\workspace\APIC_SOAP_APPLICATION\WSDLFile.wsdl
+
+
+The following is a list of WS-I warning messages found when importing:
+XSD: The location 'WSDLFile_InlineSchema1.xsd' has not been resolved, Line: 13, Column: 1
+WSDL: The 'GetEmployee' element referenced by the parameters part cannot be resolved., Line: 17, Column: 5
+WSDL: The 'GetEmployeeResponse' element referenced by the parameters part cannot be resolved., Line: 20, Column: 5
+
+
+The WSDL import will proceed with bindings WSDLFileSOAP.
+Creating wsdl schema document for file:///C:/Users/Sreenivas Bandaru/IBM/ACET12/workspace/APIC_SOAP_APPLICATION/WSDLFile.wsdl.
+Parsing wsdl binding {http://www.example.org/WSDLFile/}WSDLFileSOAP.
+Parsing wsdl binding input GetEmployee.
+Parsing wsdl binding output GetEmployee.
+Processing doc style for operation GetEmployee.
+Populating WSDL schema WSDLFile.xsd.
+Creating file WSDLFile.xsd in the workspace.

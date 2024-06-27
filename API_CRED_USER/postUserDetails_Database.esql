@@ -1,0 +1,27 @@
+
+
+CREATE DATABASE MODULE postUserDetails_Database
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		PASSTHRU 'INSERT INTO userDetails VALUES(?,?,?,?)' TO DataSource.dsn VALUES(Root.JSON.Data.userId, Root.JSON.Data.name, Root.JSON.Data.email, Root.JSON.Data.mobile);
+		RETURN TRUE;
+	END;
+
+END MODULE;
+
+CREATE DATABASE MODULE deleteUserDetails_Database
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		PASSTHRU 'DELETE FROM userDetails WHERE user_Id = ?' TO DataSource.dsn VALUES(Root.JSON.Data.userId);
+	END;
+END MODULE;
+
+CREATE DATABASE MODULE putUserDetails_Database
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		PASSTHRU 'UPDATE TABLE userDetails SET name = ?, email = ?, mobile = ? WHERE userId = ?' TO DataSource.dsn VALUES(Root.JSON.Data.name,Root.JSON.Data.email,Root.JSON.Data.mobile,Root.JSON.Data.userId);
+		RETURN TRUE;
+	END;
+
+END MODULE;
+
