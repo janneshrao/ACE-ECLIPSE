@@ -7,6 +7,7 @@ CREATE COMPUTE MODULE APPLICATION_CUSTOMER_DETAILS_MF_Compute
 		
 		IF REF = '12345' THEN
 			SET OutputRoot.JSON.Data.Customer.Name = 'Jannesh Rao';
+			SET OutputRoot.JSON.Data.Customer.Address = 'Hyderabad';
 		END IF;
 		
 		RETURN TRUE;
