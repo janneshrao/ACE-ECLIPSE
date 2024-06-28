@@ -1,0 +1,14 @@
+
+
+CREATE COMPUTE MODULE APPLICATION_LOAN_DETAILS_MF_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		IF InputRoot.JSON.Data.Customer.Id = '12345' THEN
+			SET OutputRoot.JSON.Data.LoanAccountNumber = 'ACE14389';
+			SET OutputRoot.JSON.Data.LoanAmount = 15000;
+		END IF;
+		
+		RETURN TRUE;
+	END;
+END MODULE;
