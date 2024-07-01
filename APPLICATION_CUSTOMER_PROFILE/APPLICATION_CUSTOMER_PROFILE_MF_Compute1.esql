@@ -1,0 +1,11 @@
+
+
+CREATE COMPUTE MODULE APPLICATION_CUSTOMER_PROFILE_MF_Compute1
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.JSON.Data.CustomerProfile.AccountDetails = InputRoot.ComIbmGroupCompleteNode.Group.Replies.AccountDetails.Reply.Root.JSON.Data.ACCOUNTDETAILSRES;
+		SET OutputRoot.JSON.Data.CustomerProfile.CustomerDetails = InputRoot.ComIbmGroupCompleteNode.Group.Replies.CustomerDetails.Reply.Root.JSON.Data.Customer;
+		SET OutputRoot.JSON.Data.CustomerProfile.LoanDetails = InputRoot.ComIbmGroupCompleteNode.Group.Replies.LoanDetails.Reply.Root.JSON.Data;
+		SET OutputRoot.JSON.Data.CustomerProfile.CreditCardDetails = InputRoot.ComIbmGroupCompleteNode.Group.Replies.CreditCardDetails.Reply.Root.JSON.Data.CREDITCARDDETAILSRES;
+	END;
+END MODULE;
