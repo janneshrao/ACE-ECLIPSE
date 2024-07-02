@@ -3,6 +3,24 @@
 CREATE COMPUTE MODULE APPLICATION_CUSTOMER_PROFILE_MF_Compute
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
+		DECLARE VAR BOOLEAN;
+		SET VAR = initLog4j('C:/ProgramData/IBM\MQSI/config/APIC/shared-classes/Log4jConfigurationFile.xml');
+		
+		DECLARE REQUEST CHARACTER;
+		SET REQUEST = CAST(ASBITSTREAM(InputRoot.JSON CCSID InputRoot.Properties.CodedCharSetId ENCODING InputRoot.Properties.Encoding) AS CHARACTER CCSID InputRoot.Properties.CodedCharSetId);
+		
+		CALL writeToLog4J(ApplicationLabel, 'LOGGER', 'INFO', 'Request recevied by Customer Profile Application : 
+Client Request : ' ||REQUEST) INTO VAR;
+		
 		SET OutputRoot = InputRoot;
+		
 	END;
 END MODULE;
+
+CREATE PROCEDURE initLog4j (IN File_Name CHARACTER) RETURNS BOOLEAN
+LANGUAGE JAVA
+EXTERNAL NAME "com.ibm.broker.IAM3.Log4jNode.initLog4j";
+
+CREATE PROCEDURE writeToLog4J (IN Message_Flow_Name CHARACTER, IN LOGGER_NAME CHARACTER, IN LEVEL CHARACTER, IN TEXT CHARACTER) RETURNS BOOLEAN
+LANGUAGE JAVA
+EXTERNAL NAME "com.ibm.broker.IAM3.Log4jNode.log";
