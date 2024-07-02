@@ -1,0 +1,47 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "REQUEST_VALIDATION",
+    "version" : "1.0.0",
+    "description" : "REQUEST_VALIDATION"
+  },
+  "paths" : {
+    "/emp" : {
+      "post" : {
+        "operationId" : "postEmp",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful."
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Insert a emp",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/Employee"
+          },
+          "description" : "Request Body",
+          "required" : true
+        } ]
+      }
+    }
+  },
+  "basePath" : "/request_validation/v1",
+  "definitions" : {
+    "Employee" : {
+      "type" : "object",
+      "properties" : {
+        "Id" : {
+          "type" : "number"
+        },
+        "Name" : {
+          "type" : "string"
+        }
+      },
+      "required" : [ "Id", "Name" ]
+    }
+  }
+}

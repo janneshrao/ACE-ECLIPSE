@@ -1,0 +1,8 @@
+
+
+CREATE COMPUTE MODULE postEmp_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.JSON.Data.Employee.Status = 'Emp Added Successfully';
+	END;
+END MODULE;
